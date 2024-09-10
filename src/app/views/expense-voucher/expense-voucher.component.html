@@ -1,0 +1,73 @@
+<c-container>
+    <c-row class="mb-3 ">
+      <c-col>
+      <button cButton color="primary" class="me-2" (click)="toggleLiveDemo()" cButton>Add</button>
+    <button cButton color="secondary">Print</button>
+    </c-col>
+    <!-- <button cButton color="success">Success</button> -->
+    </c-row>
+    <c-row>
+    
+    <table [striped]="true" cTable color="success">
+      <thead>
+      <tr>
+        <th scope="col">Sr#</th>
+        <th scope="col">ID</th>
+        <th scope="col">Date</th>
+        <th scope="col">By</th>
+        <th scope="col">Head</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- <tr>
+        <th scope="row">1</th>
+        <td>Otto</td>
+        <td>&#64;mdo</td>
+        <td>Edit & Delete</td>
+      </tr>
+      
+      <tr>
+        <th scope="row">2</th>
+        <td>Thornton</td>
+        <td>&#64;fat</td>
+        <td>Edit & Delete</td>
+      </tr> -->
+      </tbody>
+    </table>
+    </c-row>
+    </c-container>
+    
+    <c-modal  id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+      <c-modal-header>
+        <h5 cModalTitle>Expesne Voucher</h5>
+        <button (click)="toggleLiveDemo()" cButtonClose></button>
+      </c-modal-header>
+      <c-modal-body>
+        <form cForm>
+          <div class="mb-3">
+            <label cLabel for="exampleFormControlInput1">Expense Head</label>
+            <input cFormControl
+                   id="exampleFormControlInput1"
+                   placeholder="Expense Head"
+                   type="text"
+            />
+          </div>
+          <div class="mb-3">
+            <label cLabel for="exampleFormControlInput1">Description</label>
+            <input cFormControl
+                   id="exampleFormControlInput1"
+                   placeholder="Description"
+                   type="text"
+            />
+          </div>
+        </form>
+      </c-modal-body>
+      <c-modal-footer>
+        <button (click)="toggleLiveDemo()" cButton color="secondary">
+          Close
+        </button>
+        <button cButton color="primary">Save changes</button>
+      </c-modal-footer>
+    </c-modal>
