@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ExpensheadService } from 'src/app/Services/expenshead.service';
+import { ExpensheadService } from 'src/app/Services/expense-head-service/expenshead.service';
 import {
   ButtonCloseDirective,
   ButtonDirective,
