@@ -1,73 +1,151 @@
 <c-container>
-    <c-row class="mb-3 ">
-      <c-col>
-      <button cButton color="primary" class="me-2" (click)="toggleLiveDemo()" cButton>Add</button>
-    <button cButton color="secondary">Print</button>
+  <c-row class="mb-3 ">
+    <c-col>
+      <input cFormControl  type="text" placeholder="Search" />
     </c-col>
-    <!-- <button cButton color="success">Success</button> -->
-    </c-row>
-    <c-row>
-    
-    <table [striped]="true" cTable color="success">
-      <thead>
-      <tr>
-        <th scope="col">Sr#</th>
-        <th scope="col">ID</th>
-        <th scope="col">Date</th>
-        <th scope="col">By</th>
-        <th scope="col">Head</th>
-        <th scope="col">Amount</th>
-        <th scope="col">Action</th>
-      </tr>
+    <c-col class="d-flex justify-content-end">
+      <!-- Right column for buttons aligned to the right -->
+      <button cButton color="primary" class="me-2" (click)="toggleLiveDemo()">Add</button>
+      <button cButton color="secondary" (click)="printTable()">Print</button>
+    </c-col>
+   
+  </c-row>
+  <div id="print-section">
+
+  <c-row>
+      <!-- Scrollable container with height 300px -->
+  <div style="height: 450px; background-color:white;overflow-y: scroll;">
+    <table cTable  [responsive]="true" >
+      <thead >
+        <tr>
+          <th scope="col">Sr#</th>
+          <th scope="col"> ID</th>
+          <th scope="col">Date</th>
+          <th scope="col">By</th>
+          <th scope="col">Head</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Action</th>
+        </tr>
       </thead>
       <tbody>
-      <!-- <tr>
-        <th scope="row">1</th>
-        <td>Otto</td>
-        <td>&#64;mdo</td>
-        <td>Edit & Delete</td>
-      </tr>
-      
-      <tr>
-        <th scope="row">2</th>
-        <td>Thornton</td>
-        <td>&#64;fat</td>
-        <td>Edit & Delete</td>
-      </tr> -->
+        @for(expense of expenses;track expense.id){
+        <tr >
+          <th scope="row">{{ expense.id }}</th>
+          <td>{{ expense.expensId }}</td>
+          <td>{{ expense.description }}</td>
+          <td>
+            <span class="me-2" (click)="editExpense(expense)"  style="cursor: pointer;">
+               <svg cIcon class="icon icon-lg me-2"  name="cilPen" style="color:green;cursor: pointer;"></svg>
+            </span>
+            <span  color="danger" (click)="deleteExpense(expense.id!)" style="cursor: pointer;">
+               <svg cIcon class="icon icon-lg me-2" name="cil-trash" style="color:red;cursor: pointer;
+               "></svg>
+              </span>
+          
+
+          </td>
+        </tr>}
+        @empty {
+          <tr ><td class="text-center bg" colspan="7">There are no expense voucher.</td></tr>
+        }
       </tbody>
     </table>
-    </c-row>
-    </c-container>
-    
-    <c-modal  id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
-      <c-modal-header>
-        <h5 cModalTitle>Expesne Voucher</h5>
-        <button (click)="toggleLiveDemo()" cButtonClose></button>
-      </c-modal-header>
-      <c-modal-body>
-        <form cForm>
-          <div class="mb-3">
-            <label cLabel for="exampleFormControlInput1">Expense Head</label>
+  </div>
+  </c-row>
+  </div>
+</c-container>
+
+<!-- Modal for Adding/Editing Expense Heads -->
+<c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)" size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>{{ isEdit ? 'Edit' : 'Add' }} Expense Voucher</h5>  
+      <button (click)="toggleLiveDemo()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <form cForm [formGroup]="expensForm" (ngSubmit)="onSubmit()">
+      <c-row>
+        <c-col sm="4" md="4">
+            <label cLabel for="descriptionInput">Expense ID</label>
             <input cFormControl
-                   id="exampleFormControlInput1"
-                   placeholder="Expense Head"
+                   id="descriptionInput"
+                   placeholder="Expense ID"
                    type="text"
-            />
-          </div>
-          <div class="mb-3">
-            <label cLabel for="exampleFormControlInput1">Description</label>
+                   formControlName="expensId"
+                   name="expensId"
+                   required
+            />  
+        </c-col>
+        <c-col xs="4" md="4">
+            <label cLabel for="descriptionInput">Date</label>
             <input cFormControl
-                   id="exampleFormControlInput1"
-                   placeholder="Description"
-                   type="text"
+                   id="descriptionInput"
+                   placeholder=" Date"
+                   type="date"
+                   formControlName="date"
+                   name="date"
+                   required
             />
-          </div>
-        </form>
-      </c-modal-body>
-      <c-modal-footer>
-        <button (click)="toggleLiveDemo()" cButton color="secondary">
-          Close
-        </button>
-        <button cButton color="primary">Save changes</button>
-      </c-modal-footer>
-    </c-modal>
+        </c-col>
+        <c-col xs="4" md="4">
+            <label cLabel for="descriptionInput">Time</label>
+            <input cFormControl
+                   id="descriptionInput"
+                   placeholder="Time"
+                   type="time"
+                   formControlName="time"
+                   name="time"
+                   required
+            />
+        </c-col>
+      </c-row>
+      <c-row class="mt-3">
+        <c-col sm="4" md="4">
+            <label cLabel for="descriptionInput">Amount Head</label>
+            <select aria-label="Default select example" cSelect>
+              <option>Amount Head</option>
+              <option value="1">test1</option>
+              <option value="2">test2</option>
+              <option value="3">tes23</option>
+            </select>  
+        </c-col>
+        <c-col xs="4" md="4">
+            <label cLabel for="descriptionInput">Amount</label>
+            <input cFormControl
+                   id="descriptionInput"
+                   placeholder=" Amount"
+                   type="text"
+                   formControlName="date"
+                   name="date"
+                   required
+            />
+        </c-col>
+        <c-col xs="4" md="4">
+            <label cLabel for="descriptionInput">Expense By</label>
+            <select aria-label="Default select example" cSelect>
+              <option>Expense By</option>
+              <option value="1">test1</option>
+              <option value="2">test2</option>
+              <option value="3">tes23</option>
+            </select>
+        </c-col>
+      </c-row>
+
+      <div class="mt-3 mb-3">
+        <label cLabel for="descriptionInput">Description</label>
+        <input cFormControl
+               id="descriptionInput"
+               placeholder="Description"
+               type="text"
+               formControlName="description"
+               name="description"
+               required
+        />
+      </div>
+  
+    <c-modal-footer>
+      <button (click)="toggleLiveDemo()" cButton color="secondary">Close</button>
+      <button type="submit" [disabled]="!expensForm.valid" cButton color="primary">Submit</button>  </c-modal-footer>
+    </form>
+  </c-modal-body>
+ 
+</c-modal>

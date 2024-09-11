@@ -40,6 +40,48 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'customer-type',
+        loadComponent: () => import('./views/define-customertype/define-customertype.component').then(m => m.DefineCustomertypeComponent),
+        data: {
+          title: 'Customer Type'
+        }
+      },
+      {
+        path: 'customers',
+        loadComponent: () => import('./views/customers/customers.component').then(m => m.CustomersComponent),
+        data: {
+          title: 'Customer'
+        }
+      },
+      {
+        path: 'cylender-type',
+        loadComponent: () => import('./views/cylinder-type/cylinder-type.component').then(m => m.CylinderTypeComponent),
+        data: {
+          title: 'Cylinder Type'
+        }
+      },
+      {
+        path: 'lpg-rate',
+        loadComponent: () => import('./views/lpg-rate/lpg-rate.component').then(m => m.LpgRateComponent),
+        data: {
+          title: 'LPG Rate'
+        }
+      },
+      {
+        path: 'purchase',
+        loadComponent: () => import('./views/purchase/purchase.component').then(m => m.PurchaseComponent),
+        data: {
+          title: 'Purchase'
+        }
+      },
+      {
+        path: 'sale-invoice',
+        loadComponent: () => import('./views/sale-invoice/sale-invoice.component').then(m => m.SaleInvoiceComponent),
+        data: {
+          title: 'Sales Invoice'
+        }
+      },
+      {
         path: 'theme',
         loadChildren: () => import('./views/theme/routes').then((m) => m.routes)
       },

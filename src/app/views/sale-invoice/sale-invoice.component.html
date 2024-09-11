@@ -1,0 +1,222 @@
+<c-container>
+    <!-- <c-modal-body> -->
+      <form cForm [formGroup]="expensForm" (ngSubmit)="onSubmit()">
+        <c-row>
+            <c-col sm="4" md="4">
+                <label cLabel for="descriptionInput">Date</label>
+                <input cFormControl
+                       id="descriptionInput"
+                       placeholder="Date"
+                       type="date"
+                       formControlName="expensId"
+                       name="expensId"
+                       required
+                />  
+            </c-col>
+            <c-col xs="4" md="4">
+                <label cLabel for="descriptionInput">Time</label>
+                <input cFormControl
+                       id="descriptionInput"
+                       placeholder=" Time"
+                       type="time"
+                       formControlName="date"
+                       name="date"
+                       required
+                />
+            </c-col>
+            <c-col xs="4" md="4">
+                <label cLabel for="descriptionInput">Receipt No.</label>
+                <input cFormControl
+                       id="descriptionInput"
+                       placeholder="Receipt No"
+                       type="text"
+                       formControlName="time"
+                       name="time"
+                       required
+                />
+            </c-col>
+          </c-row>
+          <c-row>
+            <c-col sm="6" md="6">
+                <label cLabel for="descriptionInput">Customer Type</label>
+                <select aria-label="Default select example" cSelect>
+                    <option>Select Customer</option>
+                    <option value="1">test1</option>
+                    <option value="2">test2</option>
+                    <option value="3">tes23</option>
+                  </select>  
+            </c-col>
+            <c-col xs="6" md="6">
+                <label cLabel for="descriptionInput">Balance</label>
+                <input cFormControl
+                       id="descriptionInput"
+                       placeholder="Balance"
+                       type="text"
+                       name="date"
+                       required
+                />
+            </c-col>
+          </c-row>
+          <c-row>
+            <c-col sm="3" md="3">
+                <label cLabel for="descriptionInput">Vehicle</label>
+                <input cFormControl
+                id="descriptionInput"
+                placeholder="Vehicle"
+                type="text"
+                name="date"
+                required
+         />
+            </c-col>
+            <c-col xs="3" md="3">
+                <label cLabel for="descriptionInput">Gate Pass</label>
+                <input cFormControl
+                       id="descriptionInput"
+                       placeholder="Gate Pass"
+                       type="text"
+                       name="date"
+                       required
+                />
+            </c-col>
+            <c-col xs="3" md="3">
+                <label cLabel for="descriptionInput">Driver</label>
+                <input cFormControl
+                       id="descriptionInput"
+                       placeholder="Driver"
+                       type="text"
+                       name="date"
+                       required
+                />
+            </c-col>
+            <c-col xs="3" md="3">
+                <label cLabel for="descriptionInput">Mobile No</label>
+                <input cFormControl
+                       id="descriptionInput"
+                       placeholder="Mobile No"
+                       type="text"
+                       name="date"
+                       required
+                />
+            </c-col>
+          </c-row>
+          <div class="mb-3">
+            <label cLabel for="descriptionInput">Remarks</label>
+            <input cFormControl
+                   id="descriptionInput"
+                   placeholder="Remarks"
+                   type="text"
+                   formControlName="description"
+                   name="description"
+                   required
+            />
+          </div>
+<!-- <hr /> -->
+<h6 class="text-center underline">Select Cylinder Type</h6>
+          <c-row>
+            
+            <c-col sm="3" md="3">
+                <label cLabel for="descriptionInput">Select Cylinder Type</label>
+                <select aria-label="Default select example" cSelect>
+                    <option>Select Cylinder Type</option>
+                    <option value="1">test1</option>
+                    <option value="2">test2</option>
+                    <option value="3">tes23</option>
+                  </select> 
+            </c-col>
+            <c-col xs="3" md="3">
+                <label cLabel for="descriptionInput">Rate</label>
+                <input cFormControl
+                       id="descriptionInput"
+                       placeholder="Rate"
+                       type="text"
+                       name="date"
+                       required
+                />
+            </c-col>
+            <c-col xs="3" md="3">
+                <label cLabel for="descriptionInput">Qty</label>
+                <input cFormControl
+                       id="descriptionInput"
+                       placeholder="Qty"
+                       type="text"
+                       name="date"
+                       required
+                />
+            </c-col>
+            <c-col xs="3" md="3">
+                <label cLabel for="descriptionInput">Total</label>
+                <input cFormControl
+                       id="descriptionInput"
+                       placeholder="Total"
+                       type="text"
+                       name="date"
+                       required
+                />
+            </c-col>
+          </c-row>
+          <c-row>
+            
+            <c-col sm="4" md="4">
+                <label cLabel for="descriptionInput">Total Amount</label>
+                <input cFormControl
+                       id="descriptionInput"
+                       placeholder="Total Amount"
+                       type="text"
+                       name="date"
+                       required
+                />
+            </c-col>
+            <c-col xs="4" md="4">
+                <label cLabel for="descriptionInput">GST TAX</label>
+                <input cFormControl
+                       id="descriptionInput"
+                       placeholder="GST TAX"
+                       type="text"
+                       name="date"
+                       required
+                />
+            </c-col>
+            <c-col xs="4" md="4">
+                <label cLabel for="descriptionInput">Net Payable</label>
+                <input cFormControl
+                       id="descriptionInput"
+                       placeholder="Net Payable"
+                       type="text"
+                       name="date"
+                       required
+                />
+            </c-col>
+          
+          </c-row>
+          <c-row class="mb-3">
+            
+            <c-col sm="6" md="6">
+                <label cLabel for="descriptionInput">Received</label>
+                <input cFormControl
+                       id="descriptionInput"
+                       placeholder="Received"
+                       type="text"
+                       name="date"
+                       required
+                />
+            </c-col>
+            <c-col xs="6" md="6">
+                <label cLabel for="descriptionInput">Balance</label>
+                <input cFormControl
+                       id="descriptionInput"
+                       placeholder="Balance"
+                       type="text"
+                       name="date"
+                       required
+                />
+            </c-col>
+          </c-row>
+      <c-modal-footer>
+        <button (click)="toggleLiveDemo()" cButton color="secondary" class="me-2">Close</button>
+        <button type="submit" [disabled]="!expensForm.valid" cButton color="primary">Submit</button>  </c-modal-footer>
+      </form>
+    <!-- </c-modal-body> -->
+</c-container>
+   
+  <!-- </c-modal> -->
+  

@@ -29,6 +29,36 @@ export const navItems: INavData[] = [
     url: '/datawise-expense',
     iconComponent: { name: 'cil-speedometer' }
   },
+  {
+    name: 'Customer Type',
+    url: '/customer-type',
+    iconComponent: { name: 'cil-notes' }
+  },
+  {
+    name: 'Customers',
+    url: '/customers',
+    iconComponent: { name: 'cil-notes' }
+  },
+  {
+    name: 'Cylinder Type',
+    url: '/cylender-type',
+    iconComponent: { name: 'cil-notes' }
+  },
+  {
+    name: 'LPG Rate',
+    url: '/lpg-rate',
+    iconComponent: { name: 'cil-notes' }
+  },
+  {
+    name: 'Purchase',
+    url: '/purchase',
+    iconComponent: { name: 'cil-notes' }
+  },
+  {
+    name: 'Sales Invoice',
+    url: '/sale-invoice',
+    iconComponent: { name: 'cil-notes' }
+  },
   // {
   //   name: 'Typography',
   //   url: '/theme/typography',

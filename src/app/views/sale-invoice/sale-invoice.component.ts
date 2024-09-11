@@ -14,12 +14,11 @@ import {
   TableModule,
   ThemeDirective
 } from '@coreui/angular';
-import { ExpensVoucher } from 'src/app/Models/models';
+import { Expense } from 'src/app/Models/models';
 import { IconDirective } from '@coreui/icons-angular';
 
-
 @Component({
-  selector: 'app-expense-voucher',
+  selector: 'app-sale-invoice',
   standalone: true,
   imports: [FormsModule,GridModule,TableModule,FormModule,ButtonDirective,ButtonCloseDirective,
     ModalBodyComponent,
@@ -29,25 +28,20 @@ import { IconDirective } from '@coreui/icons-angular';
     ModalHeaderComponent,
     ModalTitleDirective,
     ThemeDirective,IconDirective],
-  templateUrl: './expense-voucher.component.html',
-  styleUrl: './expense-voucher.component.scss'
+  templateUrl: './sale-invoice.component.html',
+  styleUrl: './sale-invoice.component.scss'
 })
-export class ExpenseVoucherComponent {
+export class SaleInvoiceComponent {
   private expensHeadService = inject(ExpensheadService);
   private fb = inject(FormBuilder,);
   visible: boolean = false;
   isEdit: boolean = false;
   currentExpenseId: number | null = null;
-  expenses!: ExpensVoucher[];
+  expenses!: Expense[];
 
   expensForm = this.fb.group({
     id: [0],
-    expensId: ['', Validators.required],
-    date: ['', Validators.required],
-    time: ['', Validators.required],
-    accountHead: ['', Validators.required],
-    amount: ['', Validators.required],
-    expensBy: ['', Validators.required],
+    head: ['', Validators.required],
     description: ['', Validators.required],
   });
 
@@ -80,14 +74,9 @@ export class ExpenseVoucherComponent {
   }
  // Add or Edit an expense head
  onSubmit() {
-  const expenseHead: ExpensVoucher = {
+  const expenseHead: Expense = {
     id: this.expensForm.value.id === null ? undefined : this.expensForm.value.id,
-    expensId: this.expensForm.value.expensId === null ? undefined : this.expensForm.value.expensId,
-    date: this.expensForm.value.date === null ? undefined : this.expensForm.value.date,
-    time: this.expensForm.value.time === null ? undefined : this.expensForm.value.time,
-    accountHead: this.expensForm.value.accountHead === null ? undefined : this.expensForm.value.accountHead,
-    amount: this.expensForm.value.amount === null ? undefined : this.expensForm.value.amount,
-    expensBy: this.expensForm.value.expensBy === null ? undefined : this.expensForm.value.expensBy,
+    head: this.expensForm.value.head === null ? undefined : this.expensForm.value.head,
     description: this.expensForm.value.description === null ? undefined : this.expensForm.value.description,
   };
 
@@ -110,7 +99,7 @@ export class ExpenseVoucherComponent {
 }
 
     // Method to edit an existing expense
-    editExpense(expense: ExpensVoucher) {
+    editExpense(expense: Expense) {
       this.isEdit = true;
       this.currentExpenseId = expense.id!;
       this.expensForm.patchValue(expense); // Populate the form with the selected expense head's data
@@ -118,7 +107,7 @@ export class ExpenseVoucherComponent {
     }
 
      // Update the local list after edit
-  updateLocalList(id: number, updatedExpense: ExpensVoucher) {
+  updateLocalList(id: number, updatedExpense: Expense) {
     const index = this.expenses.findIndex(e => e.id === id);
     if (index !== -1) {
       this.expenses[index] = updatedExpense;

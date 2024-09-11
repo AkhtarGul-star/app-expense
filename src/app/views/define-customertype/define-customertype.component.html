@@ -1,0 +1,93 @@
+<c-container>
+    <c-row class="mb-3 ">
+      <c-col>
+        <input cFormControl  type="text" placeholder="Search" />
+      </c-col>
+      <c-col class="d-flex justify-content-end">
+        <!-- Right column for buttons aligned to the right -->
+        <button cButton color="primary" class="me-2" (click)="toggleLiveDemo()">Add Customer Type</button>
+        <!-- <button cButton color="secondary" (click)="printTable()">Print</button> -->
+      </c-col>
+     
+    </c-row>
+    <div id="print-section">
+  
+    <c-row>
+        <!-- Scrollable container with height 300px -->
+    <div style="height: 450px; background-color:white;overflow-y: scroll;">
+      <table cTable  [responsive]="true" >
+        <thead >
+          <tr>
+            <th scope="col">Sr#</th>
+            <th scope="col">Customer Type </th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(expense of expenses;track expense.id){
+          <tr >
+            <th scope="row">{{ expense.id }}</th>
+            <td>{{ expense.customType }}</td>
+            <td>{{ expense.description }}</td>
+            <td>
+              <span class="me-2" (click)="editExpense(expense)"  style="cursor: pointer;">
+                 <svg cIcon class="icon icon-lg me-2"  name="cilPen" style="color:green;cursor: pointer;"></svg>
+              </span>
+              <span  color="danger" (click)="deleteExpense(expense.id!)" style="cursor: pointer;">
+                 <svg cIcon class="icon icon-lg me-2" name="cil-trash" style="color:red;cursor: pointer;
+                 "></svg>
+                </span>
+            
+  
+            </td>
+          </tr>}
+          @empty {
+            <tr ><td class="text-center bg" colspan="4">There are no Customer.</td></tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    </c-row>
+    </div>
+  </c-container>
+  
+  <!-- Modal for Adding/Editing Expense Heads -->
+  <c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+    <c-modal-header>
+      <h5 cModalTitle>{{ isEdit ? 'Edit' : 'Add' }} Customer Type</h5>  
+        <button (click)="toggleLiveDemo()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>
+      <form cForm [formGroup]="customerTypeForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label cLabel for="expenseHeadInput">Customer Type</label>
+          <input cFormControl
+                 id="expenseHeadInput"
+                 placeholder="customer Type"
+                 type="text"
+                 formControlName="customType"
+                 name="customType"
+                 required
+          />
+        </div>
+        <div class="mb-3">
+          <label cLabel for="descriptionInput">Description</label>
+          <input cFormControl
+                 id="descriptionInput"
+                 placeholder="Description"
+                 type="text"
+                 formControlName="description"
+                 name="description"
+                 required
+          />
+        </div>
+    
+      <c-modal-footer>
+        <button (click)="toggleLiveDemo()" cButton color="secondary">Close</button>
+        <button type="submit" [disabled]="!customerTypeForm.valid" cButton color="primary">Submit</button>  </c-modal-footer>
+      </form>
+    </c-modal-body>
+   
+  </c-modal>
+  

@@ -14,12 +14,12 @@ import {
   TableModule,
   ThemeDirective
 } from '@coreui/angular';
-import { ExpensVoucher } from 'src/app/Models/models';
+import { CustomerType } from 'src/app/Models/models';
 import { IconDirective } from '@coreui/icons-angular';
 
 
 @Component({
-  selector: 'app-expense-voucher',
+  selector: 'app-define-customertype',
   standalone: true,
   imports: [FormsModule,GridModule,TableModule,FormModule,ButtonDirective,ButtonCloseDirective,
     ModalBodyComponent,
@@ -29,25 +29,20 @@ import { IconDirective } from '@coreui/icons-angular';
     ModalHeaderComponent,
     ModalTitleDirective,
     ThemeDirective,IconDirective],
-  templateUrl: './expense-voucher.component.html',
-  styleUrl: './expense-voucher.component.scss'
+  templateUrl: './define-customertype.component.html',
+  styleUrl: './define-customertype.component.scss'
 })
-export class ExpenseVoucherComponent {
+export class DefineCustomertypeComponent {
   private expensHeadService = inject(ExpensheadService);
   private fb = inject(FormBuilder,);
   visible: boolean = false;
   isEdit: boolean = false;
   currentExpenseId: number | null = null;
-  expenses!: ExpensVoucher[];
+  expenses!: CustomerType[];
 
-  expensForm = this.fb.group({
+  customerTypeForm = this.fb.group({
     id: [0],
-    expensId: ['', Validators.required],
-    date: ['', Validators.required],
-    time: ['', Validators.required],
-    accountHead: ['', Validators.required],
-    amount: ['', Validators.required],
-    expensBy: ['', Validators.required],
+    customType: ['', Validators.required],
     description: ['', Validators.required],
   });
 
@@ -64,7 +59,7 @@ export class ExpenseVoucherComponent {
   
       // Reset the form
     resetForm() {
-      this.expensForm.reset();
+      this.customerTypeForm.reset();
       this.currentExpenseId = null;
     }
 
@@ -80,15 +75,10 @@ export class ExpenseVoucherComponent {
   }
  // Add or Edit an expense head
  onSubmit() {
-  const expenseHead: ExpensVoucher = {
-    id: this.expensForm.value.id === null ? undefined : this.expensForm.value.id,
-    expensId: this.expensForm.value.expensId === null ? undefined : this.expensForm.value.expensId,
-    date: this.expensForm.value.date === null ? undefined : this.expensForm.value.date,
-    time: this.expensForm.value.time === null ? undefined : this.expensForm.value.time,
-    accountHead: this.expensForm.value.accountHead === null ? undefined : this.expensForm.value.accountHead,
-    amount: this.expensForm.value.amount === null ? undefined : this.expensForm.value.amount,
-    expensBy: this.expensForm.value.expensBy === null ? undefined : this.expensForm.value.expensBy,
-    description: this.expensForm.value.description === null ? undefined : this.expensForm.value.description,
+  const expenseHead: CustomerType = {
+    id: this.customerTypeForm.value.id === null ? undefined : this.customerTypeForm.value.id,
+    customType: this.customerTypeForm.value.customType === null ? undefined : this.customerTypeForm.value.customType,
+    description: this.customerTypeForm.value.description === null ? undefined : this.customerTypeForm.value.description,
   };
 
   if (this.isEdit && this.currentExpenseId !== null) {
@@ -110,15 +100,15 @@ export class ExpenseVoucherComponent {
 }
 
     // Method to edit an existing expense
-    editExpense(expense: ExpensVoucher) {
+    editExpense(expense: CustomerType) {
       this.isEdit = true;
       this.currentExpenseId = expense.id!;
-      this.expensForm.patchValue(expense); // Populate the form with the selected expense head's data
+      this.customerTypeForm.patchValue(expense); // Populate the form with the selected expense head's data
       this.visible = true; // Open the modal for editing
     }
 
      // Update the local list after edit
-  updateLocalList(id: number, updatedExpense: ExpensVoucher) {
+  updateLocalList(id: number, updatedExpense: CustomerType) {
     const index = this.expenses.findIndex(e => e.id === id);
     if (index !== -1) {
       this.expenses[index] = updatedExpense;
